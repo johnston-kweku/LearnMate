@@ -1,0 +1,88 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+
+<style>
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f9fafb;
+    color: #111827;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Container for the homepage content */
+.home-container {
+    max-width: 800px;
+    background: white;
+    padding: 50px 40px;
+    margin: 100px 20px 50px; /* top margin for navbar space */
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    animation: fadeInUp 1s ease forwards;
+}
+
+/* Paragraph styling */
+.home-container p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #374151;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+}
+
+/* Fade-in animation with slight stagger */
+.home-container p:nth-of-type(1) { animation-delay: 0.1s; }
+.home-container p:nth-of-type(2) { animation-delay: 0.3s; }
+.home-container p:nth-of-type(3) { animation-delay: 0.5s; }
+.home-container p:nth-of-type(4) { animation-delay: 0.7s; }
+.home-container p:nth-of-type(5) { animation-delay: 0.9s; }
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Emoji styling */
+.home-container p:first-child {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4f46e5;
+}
+
+/* Highlight some key words */
+.home-container p span {
+    color: #4f46e5;
+    font-weight: 600;
+}
+</style>
+
+<div class="home-container">
+    <p>🚀 <span>Welcome to Your Learning Log</span></p>
+
+    <p>Every big dream starts with small, consistent steps — and this is where your steps begin.</p>
+
+    <p>Your Learning Log isn’t just a place to store notes.
+    It’s a record of your <span>growth</span>, your <span>curiosity</span>, and your <span>determination</span> to become better every single day.</p>
+
+    <p>Track your ideas.<br>
+    Capture your progress.<br>
+    Celebrate your journey.</p>
+
+    <p>No matter what you’re learning — a new subject, a new skill, or a new passion — this is your space to <span>rise higher than yesterday</span>.</p>
+
+    <p>Keep learning. Keep growing. Keep becoming.</p>
+</div>
+
+{% endblock content %}

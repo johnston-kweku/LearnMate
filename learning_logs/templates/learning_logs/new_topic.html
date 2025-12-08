@@ -1,0 +1,85 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+<style>
+    /* Container and typography */
+    .content-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        animation: fadeInUp 0.8s ease-out;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .content-container p {
+        font-size: 1.2em;
+        font-weight: 500;
+        margin-bottom: 20px;
+        color: #1f2937; /* dark gray */
+        animation: fadeIn 1s ease-out;
+    }
+
+    /* Form inputs */
+    form input[type="text"], form input[type="email"], form input[type="password"], form textarea {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        border: 1px solid #d1d5db; /* light gray */
+        border-radius: 8px;
+        font-size: 1em;
+        transition: all 0.3s ease;
+    }
+
+    form input:focus, form textarea:focus {
+        border-color: #4f46e5; /* indigo */
+        box-shadow: 0 0 5px rgba(79,70,229,0.4);
+        outline: none;
+    }
+
+    /* Buttons */
+    button {
+        background: linear-gradient(90deg, #4f46e5, #6366f1);
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        animation: fadeIn 1.2s ease-out;
+    }
+
+    button:hover {
+        background: linear-gradient(90deg, #6366f1, #4f46e5);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+</style>
+
+<div class="content-container">
+    <p>Add a new topic:</p>
+
+    <form action="{% url 'learning_logs:new_topic' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Add Topic</button>
+    </form>
+</div>
+{% endblock content %}

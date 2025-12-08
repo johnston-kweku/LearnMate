@@ -1,0 +1,85 @@
+{% extends 'learning_logs/base.html' %}
+{% block content %}
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #74ebd5, #ACB6E5); /* soft gradient */
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .contact-links {
+        display: flex;
+        flex-direction: column; /* vertical buttons */
+        gap: 20px;
+        text-align: center;
+    }
+
+    .contact-links a {
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 50px;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 1.2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Button colors */
+    .contact-links a.email { background-color: #007bff; }
+    .contact-links a.learn { background-color: #28a745; }
+    .contact-links a.whatsapp { background-color: #25D366; }
+
+    /* Hover effect */
+    .contact-links a:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Glow animation */
+    .contact-links a::after {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255,255,255,0.2);
+        transform: skewX(-20deg);
+        transition: all 0.5s ease;
+    }
+
+    .contact-links a:hover::after {
+        left: 200%;
+    }
+
+    /* Optional: small bounce animation on load */
+    @keyframes bounceIn {
+        0% { transform: translateY(-50px); opacity: 0; }
+        60% { transform: translateY(10px); opacity: 1; }
+        100% { transform: translateY(0); }
+    }
+
+    .contact-links a {
+        animation: bounceIn 0.8s ease forwards;
+    }
+</style>
+
+<div class="contact-links">
+    <a href="mailto:johnstonkweku@gmail.com?subject=Hello&body=I%20would%20like%20to%20know%20more%20about%20your%20projects." class="email">
+        Email
+    </a>
+    <a href="https://trophytechsolutions.com/" class="learn">
+        Learn more
+    </a>
+    <a href="https://wa.me/233595471021?text=Hello%20Johnston,%20I%20would%20like%20to%20know%20more%20about%20your%20projects." class="whatsapp">
+        Chat on WhatsApp
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+<style>
+/* Body styling inherits from base, so no navbar duplication needed */
+.topic-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    animation: fadeSlideUp 0.8s ease forwards;
+    opacity: 0;
+}
+
+/* Fade & slide animation */
+@keyframes fadeSlideUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Entries styling */
+ul {
+    list-style: none;
+    padding: 0;
+}
+ul li {
+    background: #eef2ff;
+    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+ul li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+}
+ul li p:first-of-type {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+ul li p:nth-of-type(2) {
+    font-size: 16px;
+    color: #111827;
+    white-space: pre-wrap;
+}
+
+/* Links and buttons */
+a {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 12px;
+    transition: color 0.3s, transform 0.3s;
+}
+a:hover {
+    color: #6366f1;
+    transform: translateY(-2px);
+}
+.add-entry {
+    display: inline-block;
+    margin-bottom: 20px;
+    background: #4f46e5;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.3s;
+}
+.add-entry:hover {
+    background: #6366f1;
+    transform: translateY(-2px);
+}
+</style>
+
+<div class="topic-container">
+    <p>Topic: {{ topic }}</p>
+    <p>Entries:</p>
+    <p>
+        <a class="add-entry" href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a>
+    </p>
+    <ul>
+        {% for entry in entries %}
+        <li>
+            <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
+            <p>{{ entry.entry|linebreaks }}</p>
+            <a href="{% url 'learning_logs:edit_entry' entry.id %}">Edit entry</a>
+        </li>
+        {% empty %}
+        <li>There are no entries for this topic yet.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}

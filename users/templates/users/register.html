@@ -1,0 +1,156 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+
+<style>
+/* Make navbar fixed at the top */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: #4f46e5;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Navbar links styling */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Body padding to prevent navbar overlap */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f3f4f6;
+    padding-top: 80px; /* height of navbar */
+    display: flex;
+    justify-content: center;
+}
+
+/* Registration box styling */
+.register-box {
+    background: white;
+    padding: 50px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    animation: fadeSlideUp 0.8s ease forwards;
+    opacity: 0;
+}
+
+/* Fade & slide animation */
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Heading */
+.register-box h1 {
+    text-align: center;
+    color: #4f46e5;
+    margin-bottom: 24px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Form elements */
+.register-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-box input[type="text"],
+.register-box input[type="email"],
+.register-box input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.register-box input[type="text"]:focus,
+.register-box input[type="email"]:focus,
+.register-box input[type="password"]:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 8px rgba(79,70,229,0.3);
+    outline: none;
+}
+
+/* Submit button */
+.register-box button {
+    background: #4f46e5;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.register-box button:hover {
+    background: #6366f1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Error messages */
+.register-box p.error-msg {
+    color: #b91c1c;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: center;
+}
+</style>
+
+<!-- Navbar at top -->
+<nav>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 24px;">
+        <a href="{% url 'learning_logs:index' %}">Learning Log</a>
+        <div>
+            {% if user.is_authenticated %}
+                <span>Hello {{ user.username }}</span>
+                <a href="{% url 'users:logout' %}">Log out</a>
+            {% else %}
+                <a href="{% url 'users:register' %}">Register</a>
+                <a href="{% url 'users:login' %}">Log in</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<div class="register-box">
+    <h1>Sign Up</h1>
+
+    {% if form.errors %}
+        <p class="error-msg">Please fix the errors below and try again.</p>
+    {% endif %}
+
+    <form action="{% url 'users:register' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Register</button>
+        <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
+    </form>
+</div>
+
+{% endblock %}

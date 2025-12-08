@@ -1,0 +1,173 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Log</title>
+
+    <style>
+        /* Fade & slide animations */
+        @keyframes slideFadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideFadeInRight {
+            0% { opacity: 0; transform: translateX(20px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Ensure padding is included in width calculations */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* Navbar container */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #4f46e5, #6366f1);
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            flex-wrap: wrap; /* wrap content if necessary */
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-radius: 0 0 12px 12px;
+            animation: slideFadeIn 0.8s ease-out;
+            z-index: 1000;
+        }
+
+        .navbar:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s;
+        }
+
+        /* Breadcrumb links */
+        .navbar .breadcrumbs a {
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s;
+            animation: slideFadeInRight 1s ease-out;
+        }
+
+        .navbar .breadcrumbs a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #facc15;
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+        }
+
+        .navbar .breadcrumbs a:hover {
+            color: #facc15;
+        }
+
+        .navbar .breadcrumbs a:hover::after {
+            width: 100%;
+        }
+
+        /* Separator style */
+        .navbar .separator {
+            color: rgba(255,255,255,0.6);
+            margin-right: 10px;
+        }
+
+        /* User section buttons */
+        .navbar .user-actions {
+            display: flex;
+            flex-wrap: wrap; /* ensures buttons wrap instead of overflowing */
+            align-items: center;
+        }
+
+        .navbar .user-actions a {
+            background-color: #f59e0b;
+            color: white;
+            padding: 8px 14px;
+            margin-left: 8px;
+            margin-top: 4px; /* small margin for wrapping rows */
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            animation: slideFadeInRight 1.2s ease-out;
+        }
+
+        .navbar .user-actions a:hover {
+            background-color: #b45309;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .navbar .user-actions span {
+            margin-right: 10px;
+            font-weight: 600;
+            animation: slideFadeInRight 1.1s ease-out;
+        }
+
+        /* Content spacing so it doesn't overlap navbar */
+        body {
+            margin: 0;
+            padding-top: 90px; /* adjust based on navbar height */
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .navbar .breadcrumbs {
+                margin-bottom: 10px;
+            }
+            .navbar .user-actions {
+                margin-top: 0;
+            }
+            .navbar .user-actions a {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="breadcrumbs">
+            <a href="{% url 'learning_logs:index' %}">Learning Log</a>
+            <span class="separator">-</span>
+            <a href="{% url 'learning_logs:topics' %}">Topics</a>
+            <span class="separator">-</span>
+        </div>
+
+        <div class="user-actions">
+            {% if user.is_authenticated %}
+                <span>Hello, {{ user.username }}</span>
+                <a href="{% url 'users:logout' %}">Log out</a>
+            {% else %}
+                <a href="{% url 'users:register' %}">Register</a>
+                <a href="{% url 'users:login' %}">Log in</a>
+            {% endif %}
+            <a href="{% url 'learning_logs:about' %}">About</a>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock content %}
+
+</body>
+</html>
