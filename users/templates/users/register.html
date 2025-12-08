@@ -131,7 +131,7 @@ body {
                 <span>Hello {{ user.username }}</span>
                 <a href="{% url 'users:logout' %}">Log out</a>
             {% else %}
-                <a href="{% url 'users:register' %}">Register</a>
+                <!-- <a href="{% url 'users:register' %}">Register</a> -->
                 <a href="{% url 'users:login' %}">Log in</a>
             {% endif %}
         </div>
@@ -148,9 +148,10 @@ body {
     <form action="{% url 'users:register' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="submit">Register</button>
+        <button name="submit">Sign in</button>
         <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
     </form>
+    
 </div>
 
 {% endblock %}

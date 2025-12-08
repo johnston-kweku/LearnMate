@@ -50,10 +50,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
 
-
     # My apps
-    'learning_logs',
+    'learning_logs.apps.LearningLogsConfig',
     'users',
+    'django_crontab',
+    
     
 ]
 
@@ -140,3 +141,15 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # My settings
+
+CRONJOBS = [
+    ('0 18 * * *', 'learning_logs.tasks.send_streak_reminders'),
+]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your_email@gmail.com'
+EMAIL_HOST_PASSWORD = 'your_app_password'  # Use Gmail App Password
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

@@ -1,0 +1,128 @@
+{% extends 'learning_logs/base.html' %}
+{% block content %}
+<div class="dashboard-container">
+    <h1 class="welcome">🎮 Welcome, {{ user.username }}!</h1>
+
+    <div class="stats">
+        <div class="stat-card">
+            <h2>Total Topics</h2>
+            <p>{{ topic_length }}</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>Today's Date</h2>
+            <p>{{ today }}</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>Last Visit</h2>
+            <p>{{ last_entry_date }}</p>
+        </div>
+
+        <div class="stat-card streak-card">
+            <h2>🔥 Current Streak</h2>
+            <div class="streak-bar">
+                <div class="streak-fill" style="width: 0%;">{{ streak|add:"0" }}</div>
+            </div>
+            <p>{{ streak }} days 🔥 Keep it going!</p>
+        </div>
+    </div>
+
+    <div class="challenge">
+        <p>💡 Challenge: Add a new topic today to keep your streak alive and earn badges! 🎯</p>
+    </div>
+</div>
+
+<style>
+/* Container */
+.dashboard-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    border-radius: 15px;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Welcome */
+.welcome {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 5px #000;
+}
+
+/* Stats */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.stat-card h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: #ffd700;
+}
+
+/* Streak */
+.streak-card {
+    position: relative;
+}
+
+.streak-bar {
+    width: 100%;
+    height: 20px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    margin: 0.5rem 0;
+    overflow: hidden;
+}
+
+.streak-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff512f, #dd2476);
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Challenge Box */
+.challenge {
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 10px #ffdd00; }
+    to { box-shadow: 0 0 25px #ff4500; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

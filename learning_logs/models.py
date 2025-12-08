@@ -29,4 +29,15 @@ class Entry(models.Model):
         else: 
             return self.entry[:50] 
 
+class UserProfile(models.Model):
+    """Additional information about the"""
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    current_streak = models.PositiveIntegerField(default=0)
+    last_entry_date = models.DateTimeField(null=True, blank=True)
+
+
+    def __str__(self):
+        """Return a string representation of the model"""
+        return self.user.username
+
 

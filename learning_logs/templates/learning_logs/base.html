@@ -26,6 +26,8 @@
     <meta name="twitter:title" content="LearnMate - Learn Smarter">
     <meta name="twitter:description" content="Track your study notes, organize topics, and boost productivity with LearnMate.">
     <meta name="twitter:image" content="/static/img/preview.png">
+    
+    <link rel="icon" type="image/png" href="https://www.flaticon.com/free-icon/book_19007761">
 
    
 
@@ -166,6 +168,29 @@
                 margin-left: 0;
             }
         }
+
+        /* Floating Dashboard Button */
+.floating-dashboard-btn {
+    position: fixed;
+    bottom: 30px; /* distance from bottom */
+    right: 30px;  /* distance from right */
+    background-color: #4f46e5;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.2s, background-color 0.2s;
+    z-index: 1000;
+}
+
+/* Hover effect */
+.floating-dashboard-btn:hover {
+    background-color: #3730a3;
+    transform: scale(1.1);
+}
+
     </style>
 </head>
 <body>
@@ -192,6 +217,9 @@
     </nav>
 
     {% block content %}{% endblock content %}
+{% if user.is_authenticated %}
+<a href="{% url 'learning_logs:dashboard' %}" class="floating-dashboard-btn">Dashboard</a>
+{% endif %}
 
 </body>
 </html>
