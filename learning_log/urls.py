@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
 from .sitemap import TopicSitemap
+from django.views.generic import TemplateView
 
 sitemaps = {
     'topics': TopicSitemap,
@@ -30,4 +31,5 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('', include('learning_logs.urls', namespace='learning_logs')),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
+    path('google1234567890abcdef.html', TemplateView.as_view(template_name='google1234567890abcdef.html', content_type='text/html'))
 ]
