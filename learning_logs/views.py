@@ -92,3 +92,6 @@ def edit_entry(request, entry_id):
 
 def about(request):
     return render(request, 'learning_logs/about.html')
+
+def extras(request):
+    return render(request, 'learning_logs/extras.html')
