@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://learning-log-django.onrender.com/sitemap.xml

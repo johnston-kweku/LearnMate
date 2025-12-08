@@ -16,6 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
+from .sitemap import TopicSitemap
+
+sitemaps = {
+    'topics': TopicSitemap,
+}
 
 
 
@@ -23,4 +29,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls', namespace='users')),
     path('', include('learning_logs.urls', namespace='learning_logs')),
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
 ]

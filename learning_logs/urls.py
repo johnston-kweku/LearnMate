@@ -14,4 +14,6 @@ urlpatterns = [
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
     path('about/', views.about, name='about'),
     path('extras/', views.extras, name='extras'),
+    path("robots.txt", views.robots_txt),
+
 ]

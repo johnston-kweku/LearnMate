@@ -36,7 +36,7 @@ SECRET_KEY = 'django-insecure--c4&balwlg#8e3s%@&lyj3qb)sse#zu-zj0oyfb5vt19^ti=#g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['learning-log-django.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'learning-log-django.onrender.com']
 
 
 # Application definition
@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
+
 
     # My apps
     'learning_logs',

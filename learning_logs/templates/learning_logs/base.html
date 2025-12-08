@@ -3,9 +3,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Log</title>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}LearnMate - Track Your Learning Journey{% endblock %}</title>
+
+    <!-- SEO Meta -->
+    <meta name="description" content="LearnMate helps you track your learning progress, organize topics, and build knowledge efficiently.">
+    <meta name="keywords" content="learnmate, learning log, study tracker, student notes, online notebook, topic journal, django study app">
+    <meta name="author" content="Johnston Kweku Abubakar">
+
+    <!-- OpenGraph (WhatsApp, Facebook, LinkedIn) -->
+    <meta property="og:title" content="LearnMate - Learn Smarter">
+    <meta property="og:description" content="Track your study notes, organize topics, and boost your productivity with LearnMate.">
+    <meta property="og:image" content="/static/img/preview.png">
+    <meta property="og:url" content="https://learning-log-django.onrender.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LearnMate - Learn Smarter">
+    <meta name="twitter:description" content="Track your study notes, organize topics, and boost productivity with LearnMate.">
+    <meta name="twitter:image" content="/static/img/preview.png">
+
+   
+
 
     <style>
         /* Fade & slide animations */

@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from .forms import TopicForm, EntryForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -95,3 +96,7 @@ def about(request):
 
 def extras(request):
     return render(request, 'learning_logs/extras.html')
+
+def robots_txt(request):
+    content = "User-agent: *\nDisallow:\nSitemap: https://learning-log-django.onrender.com/sitemap.xml"
+    return HttpResponse(content, content_type="text/plain")
