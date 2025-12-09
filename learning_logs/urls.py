@@ -16,4 +16,6 @@ urlpatterns = [
     path('extras/', views.extras, name='extras'),
     path("robots.txt", views.robots_txt),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('delete_topic/<int:topic_id>/', views.delete_topic, name='delete_topic'),
+    path('mindset/', views.mindset, name='mindset'),
 ]
