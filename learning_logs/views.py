@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Topic, Entry, UserProfile
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
@@ -119,7 +119,7 @@ def edit_entry(request, entry_id):
 def about(request):
     return render(request, 'learning_logs/about.html')
 
-
+@login_required
 def extras(request):
     return render(request, 'learning_logs/extras.html')
 
@@ -152,3 +152,22 @@ def dashboard(request):
     }
 
     return render(request, 'learning_logs/dashboard.html', context)
+
+
+def delete_topic(request, topic_id):
+    """Delete a topic."""
+    topic = get_object_or_404(Topic, id=topic_id)
+    if topic.owner != request.user:
+        raise Http404
+    
+    if request.method == 'POST':
+        topic.delete()
+        return redirect('learning_logs:topics')
+    
+    context = {'topic': topic}
+    return render(request, 'learning_logs/delete_topic.html', context)
+
+def mindset(request):
+
+    return render(request, 'learning_logs/mindset.html')
+
