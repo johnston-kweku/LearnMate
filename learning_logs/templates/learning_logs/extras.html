@@ -4,53 +4,95 @@
 {% block content %}
 <style>
     .extras-container {
+        max-width: 900px;
+        margin: 50px auto 100px auto;
+        padding: 20px;
         text-align: center;
-        padding: 40px 20px;
         animation: fadeIn 0.8s ease-in-out;
+        font-family: 'Arial', sans-serif;
     }
 
     .extras-title {
-        font-size: 2rem;
-        font-weight: bold;
+        font-size: 2.5rem;
+        font-weight: 700;
         margin-bottom: 15px;
-        color: #333;
+        color: #4f46e5;
     }
 
     .extras-text {
-        margin-bottom: 30px;
-        font-size: 1.1rem;
+        margin-bottom: 40px;
+        font-size: 1.2rem;
         color: #555;
     }
 
+    /* Grid layout for links */
+    .extras-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
     .extras-link {
-        display: inline-block;
-        padding: 12px 20px;
-        background: linear-gradient(135deg, #2ecc71, #27ae60);
+        display: block;
+        padding: 18px 20px;
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
         color: white;
+        font-weight: 600;
         text-decoration: none;
-        font-size: 1.1rem;
-        border-radius: 10px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
     }
 
     .extras-link:hover {
-        transform: translateY(-4px) scale(1.03);
-        box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        background: linear-gradient(135deg, #6366f1, #4f46e5);
     }
 
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
     }
+
+    /* Responsive text on smaller screens */
+    @media (max-width: 600px) {
+        .extras-title {
+            font-size: 2rem;
+        }
+        .extras-text {
+            font-size: 1rem;
+        }
+    }
 </style>
 
 <div class="extras-container">
     <h2 class="extras-title">Extras Page</h2>
-    <p class="extras-text">Welcome to the Extras page! Explore additional resources and cool features.</p>
+    <p class="extras-text">Welcome! Explore these educational resources and fun features to boost your learning.</p>
 
-    <a class="extras-link" href="https://shopnetgh.com/store/cj-s-digital-market" target="_blank">
-        💡 Affordable Data Bundles for All Networks
-    </a>
+    <div class="extras-links">
+        <a class="extras-link" href="https://shopnetgh.com/store/cj-s-digital-market" target="_blank">
+            💡 Affordable Data Bundles for All Networks
+        </a>
+        <a class="extras-link" href="https://w3schools.com" target="_blank">
+            💻 Programming Tutorials
+        </a>
+        <a class="extras-link" href="https://www.freecodecamp.org" target="_blank">
+            🌐 Web Development Guides
+        </a>
+        <a class="extras-link" href="https://www.khanacademy.org/computing/computer-programming" target="_blank">
+            👨‍💻 Coding Tutorials
+        </a>
+        <a class="extras-link" href="https://www.youtube.com/@programmingwithmosh" target="_blank">
+            📺 YouTube Coding Lessons
+        </a>
+        <a class="extras-link" href="https://trophytechsolutions.com" target="_blank">
+            🏆 Earn Certification
+        </a>
+        <a class="extras-link" href="{% url 'learning_logs:mindset' %}" target="_blank">
+            🧠 Mindset | Self Help
+        </a>
+    </div>
 </div>
-
 {% endblock %}
+

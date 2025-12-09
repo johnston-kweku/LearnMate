@@ -1,0 +1,70 @@
+{% extends 'learning_logs/base.html' %}
+{% block title %}Build Your Mindset | LearnMate{% endblock %}
+
+{% block content %}
+<style>
+.mindset-container {
+    max-width: 800px;
+    margin: 40px auto 80px auto;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    animation: fadeSlideUp 0.8s ease-out;
+}
+
+.mindset-container p {
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+.mindset-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4f46e5;
+    margin-bottom: 20px;
+}
+
+.mindset-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.mindset-links a {
+    display: inline-block;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.mindset-links a:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+@keyframes fadeSlideUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<div class="mindset-container">
+    <h2 class="mindset-title">Build Your Mindset</h2>
+    <p>Hello {{ user.username }}, welcome to the Mindset section. Explore these books to grow your mindset and self-help skills!</p>
+
+    <div class="mindset-links">
+        <a href="https://wahiduddin.net/thinketh/as_a_man_thinketh.pdf?utm_source=chatgpt.com" target="_blank">As A Man Thinketh</a>
+        <a href="https://www.gutenberg.org/files/935/935-h/935-h.htm?utm_source=chatgpt.com" target="_blank">Conduct And Perseverance</a>
+        <a href="https://www.gutenberg.org/ebooks/13142?utm_source=chatgpt.com" target="_blank">Way To Power</a>
+        <a href="https://www.gutenberg.org/ebooks/935?utm_source=chatgpt.com" target="_blank">Self Help</a>
+        <a href="https://www.gutenberg.org/ebooks/59844" target="_blank">The Science of Getting Rich</a>
+    </div>
+</div>
+{% endblock %}
