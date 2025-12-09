@@ -10,3 +10,5 @@ setuptools==80.9.0
 sqlparse==0.5.3
 svgwrite==1.4.3
 Tree==0.2.4
+django-crontab==0.7.1
+
